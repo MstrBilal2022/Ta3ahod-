@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/fremwork.css">
+    <link rel="stylesheet" href="css/read.css">
+    <title>تدبر كتاب العليم خالق الكون </title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+
+            <h1><a href="index.html">الرئيسية</a></h1>
+            <nav>
+                <div class="icon" id="icon">
+                    <span></span>
+                <span ></span>
+                <span></span>
+            </div>
+            <ul class="links" id="menu">
+                <li class="target"><a href="#">قرآن مع التفسير</a></li>
+                <li><a href="#">متشابهات</a></li>
+                <li><a href="#">اختبر حفظك</a></li>
+                <li><a href="#">نصائح</a></li>
+                <li><a href="#">فضل القرآن</a></li>
+                <li><a href="#">ارشادات الإستعمال</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+    </header>
+
+    <label class="mode" for="mode" style="display: none;">مضلم
+        <input type="checkbox" id="mode" >
+      </label>
+      
+    <div class="container">
+        <div class="card">
+            لا تطل الغفلة ، عُدْ نفسك وزرها وانزع حبل الضيق عن عنقك، وتعامل وتاجر مع من بيده ملكوت كل شيء
+        </div>
+    </div>
+<div id="scroller"></div>
+<div class="overlay"></div>
+    <div class="controls">
+        <div class="container">
+            <div class="box">
+            <label for="search">
+                <input type="search" name="search" id="search" placeholder="ابحث عن سورة">
+            </label>
+            <div class="buttons ">
+                <button class="btn" id="reverse">عكس ترتيب السور</button>
+                <select class="btn">
+                    <optgroup label="تغيير الرواية"></optgroup>
+                    <option value="warsh" selected>رواية ورش</option>
+                    <option value="hafs">رواية حفص</option>
+                </select>
+                <select class="btn" id="tafsirName">
+                    <optgroup label="تغيير التفسير"></optgroup>
+                    <option value="saddi" selected>تفسير السعدي</option>
+                    <option value="jalalayn" >تفسير الجلاليين</option>
+                </select>
+            </div>
+
+            </div>
+        </div>
+    </div>
+    <section class="menuSora">
+        <div class="container">
+            <div class="box border">
+                <div class="parent">
+
+                    <button class="btn">اخفاء أسماء السور</button>
+                    <button class="btn" id="ayaSaved">أكمل القراءة 🔖</button>
+                </div>
+                <ul id="names"></ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="quran-tafsir">
+        <div class="container">
+            <label for="searchAya">
+                <input type="search" name="" id="searchAya" placeholder="ابحث عن آية">
+            </label>
+            <div class="quranContainer" id="quranContainer">
+                <div class="bt">
+                    <button id="last">السورة السابقة</button>
+                </div>
+                <h2 id="titleSora"></h2>
+                <h3 id="basmala">بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ</h3>
+                <div id="sora"></div>
+                <div class="btL">
+                    <button id="next">السورة التالية</button>
+
+                </div>
+            </div>
+            <div id="overlay" class="overlay"></div> 
+            <div class="tafsirContainer" id="tafsirContainer">
+                <ul id="tafsirAya"></ul>
+            </div>
+        </div>
+    </section>
+
+<script src="js/global.js" type="module"></script>
+<script src="js/read.js" type="module"></script>
+</body>
+
+</html>

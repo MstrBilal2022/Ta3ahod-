@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/fremwork.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="description" content="موقع تعاهد لتسهيل حفظ القرآن الكريم وفهم تفسيره والمتشابهات.">
+
+  <meta name="keywords"
+    content="القرآن الكريم، تعاهد، حفظ القرآن، تفسير، متشابهات، فضل القرآن، اختبار الحفظ، نصائح، إسلام">
+  <title>تعاهُد</title>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="box card">
+        <div class="header">
+          مرحبا بك في <h1>تعاهد</h1> لجعل القرآن في صدرك
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- End header -->
+  <!-- start navigation -->
+
+  <nav>
+    <div class="container">
+      <div class="control">
+        <!-- for testing -->
+        <div class="setting">
+          <div class="size">
+            <button class="small" data-size="8" title="حجم النصوص صغير">صغير</button>
+            <button class="medium active" data-size="10" title="حجم النص متوسط">متوسط</button>
+            <button class="big" data-size="12" title="حجم النصوص كبير">كبير</button>
+          </div>
+          <label class="mode" for="mode">مضلم
+            <input type="checkbox" id="mode">
+          </label>
+        </div>
+        <!-- for testing -->
+        <label for="search" class="search">
+          <input type="search" id="search" placeholder="ابحث عن قسم...">
+        </label>
+      </div>
+      <ul>
+        <li data-url="read.html" role="button" tabindex="0" aria-label="الإنتقال لصفحة القرآن مع التفسير">
+          <h3>قرآن 📖</h3>
+          <p>إقرأ القرآن مع تفسيره</p>
+        </li>
+        <li data-url="tips.html" role="button" tabindex="0" aria-label="صفحة إرشادات ونصائح لحفظ القرآن">
+          <h3>نصائح 💡</h3>
+          <p>نصائح لحفظ القرآن الكريم</p>
+        </li>
+        <li data-url="prefer.html" role="button" tabindex="0" aria-label="صفحة مواعظ عن فضل القرآن">
+          <h3>فضائل القرآن 🌟</h3>
+          <p>علق قلبك بالقرآن بالقراءة عن فضله</p>
+        </li>
+        <li data-url="test.html" role="button" tabindex="0" aria-label="صفحة لاختبار الحفظ">
+          <h3>اختبار الحفظ 📝</h3>
+          <p>إختبر حفظك من كلام الله</p>
+        </li>
+        <li data-url="test.html" role="button" tabindex="0" aria-label="صفحة لاختبار الفهم">
+          <h3>اختبار الفهم 📚</h3>
+          <p>إختبر فهمك من كلام الله</p>
+        </li>
+        <li>
+          <h3>متشابهات 🧩</h3>
+          <p>إضبط متشابهات القرآن</p>
+        </li>
+        <li data-url="select.html" role="button" tabindex="0" aria-label="صفحة للتخطيط لختمة">
+          <h3>تخطيط 🗓</h3>
+          <p>ضع خطة لختم كلام الله</p>
+        </li>
+        <li data-url="advanced.html" role="button" tabindex="0" aria-label="صفحة إرشادات ونصائح لحفظ القرآن">
+          <h3>نصائح قرآنية 🥇</h3>
+          <p>نصائح مستخلصة من كتاب الله</p>
+        </li>
+        <li data-url="info.html" role="button" tabindex="0" aria-label="صفحة إرشادات إستعمال البرنامج">
+          <h3>إرشادات البرنامج ℹ️</h3>
+          <p>يُرجى قراءة إرشادات استعمال البرنامج</p>
+        </li>
+        <li data-url="https://t.me/ta3ahod⁩" role="button" tabindex="0" aria-label="قناة البرنامج على تلجرام">
+          <h3>قناة التلجرام <img src="data/telegram.png" alt="telegram icon"></h3>
+          <p>قناة البرنامج تضم على مافي البرنامج وتفاصيل أكثر</p>
+        </li>
+        <li data-url="saved.html" role="button" tabindex="0" aria-label="صفحة الأيات المحفوظة">
+          <h3>الأيات المحفوظة 🔖</h3>
+          <p>الأيات المحفوظة لتدبرها والعمل بها</p>
+        </li>
+        <li data-url="about.html" role="button" tabindex="0" aria-label="صفحة معلومات عن مطور البرنامج">
+          <h3>من نحن 🪪</h3>
+          <p>معلومات عن البرنامج ومطوره</p>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- End navigation -->
+
+  <!-- start fotter -->
+  <footer>
+    <div class="container">
+
+      <div class="info">
+        <p>جَمِيعْ رِوايات المصحف الكريم تم أخذها من <a href="https://qurancomplex.gov.sa/techquran/dev/">منصة مطوري مجمع الملك فهد لطباعة القرآن الكريم</a> ، كما تم أخذ التفاسير من <a href="https://github.com/OpenITI/RAWrabicaShamAY3/blob/master">هنا</a></p>
+        
+      </div>
+      <hr>
+      <div class="copy">
+        جميع الحقوق محفوظة &copy; <span id="year">2025</span>
+      </div>
+    </div>
+  
+  </footer>
+  <!-- end fotter -->
+
+<script defer>
+  // نتحقق أولاً هل متصفح المستخدم يدعم هذه التقنية
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js")
+      .then((reg) => console.log("تم تسجيل Service Worker بنجاح! تطبيقك الآن جاهز للعمل بدون إنترنت 🚀", reg.scope))
+      .catch((err) => console.log("حدث خطأ في تسجيل Service Worker:", err));
+  });
+}
+
+  //Search for seactions
+// دالة لتوحيد الحروف
+function normalizeArabic(text) {
+  return text
+    .replace(/[أإآ]/g, 'ا')         // استبدال الألف المتنوعة بألف عادية
+    .replace(/[ًٌٍَُِّْ]/g, '')     // حذف التشكيل
+    .replace(/^ال/g, '')            // حذف "ال" من بداية الكلمة
+    .replace(/\s+/g, ' ')           // توحيد المسافات
+    .trim();                       // حذف المسافات الزائدة
+}
+
+document.getElementById('search').addEventListener('input', function() {
+  const searchTerm = normalizeArabic(this.value.toLowerCase()); // نص البحث المعالج
+  const cards = document.querySelectorAll('nav ul li'); // كل الكروت
+
+  cards.forEach(function(card) {
+    const cardTitle = normalizeArabic(card.querySelector('h3').textContent.toLowerCase()); // عنوان البطاقة
+    const cardParagraph = normalizeArabic(card.querySelector('p').textContent.toLowerCase()); // نص الفقرة داخل البطاقة
+    
+    // البحث في العنوان أو الفقرة
+    if (cardTitle.includes(searchTerm) || cardParagraph.includes(searchTerm)) {
+      card.style.display = ''; // إظهار البطاقة
+    } else {
+      card.style.display = 'none'; // إخفاء البطاقة
+    }
+  });
+});
+
+// change size
+let btns = document.querySelectorAll(".setting .size button");
+btns.forEach(function(ele){
+  ele.onclick = function(){
+    btns.forEach(function(ele){
+      ele.classList.remove("active")
+    })
+    this.classList.add("active");
+    let newSize = this.dataset.size ;
+    document.documentElement.style.fontSize = newSize + 'px';
+    window.localStorage.setItem('size',newSize)
+    
+  }
+})
+//check for size saved
+if (window.localStorage.getItem('size')) {
+  document.documentElement.style.fontSize = window.localStorage.getItem('size') + 'px';
+  btns.forEach(function (e) {
+    e.classList.remove('active');
+    if (e.dataset.size == localStorage.getItem('size')) {
+      e.classList.add('active')
+    }
+    
+  })
+}
+
+// change mode
+let ch = document.getElementById('mode');
+
+// add mode to localStorage 
+ch.addEventListener('change',function () {
+  if (this.checked) {
+    window.localStorage.setItem('mode','dark')
+  }else {
+    window.localStorage.removeItem('mode')
+  }
+})
+// check mode saved
+if (window.localStorage.getItem('mode')) {
+  //add mode to bdy 
+  ch.checked= true;
+}
+
+
+  //open sections
+  const lis = document.querySelectorAll('nav ul li');
+
+
+lis.forEach(card => {
+  card.addEventListener('click', () => {
+    
+    const url = card.getAttribute('data-url');
+    // فتح الصفحة الجديدة
+    window.location.href = url;
+  });
+
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      const url = card.getAttribute('data-url');
+      window.location.href = url;
+    }
+  });
+});
+
+  //footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+</script>
+</body>
+
+</html>

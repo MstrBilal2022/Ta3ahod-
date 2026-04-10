@@ -1,0 +1,235 @@
+@font-face {
+  font-family: "Amiri";
+  src: url("../font/Amiri-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Amiri";
+  src: url("../font/Amiri-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Global styling */
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --headersColor: #ffd700;
+  --textColor: #4caf50;
+  --accentColor: #00bfa6;
+  --transition: 2s;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding: 50px;
+  font-size: 10px;
+}
+html:has(#mode:checked){
+  --shadow: #15ceb5ed;
+  --bgColor: black;
+  --textWhite:whitesmoke;
+  --bgBox: #4a454582;
+}
+body{
+  background-color: var(--bgColor);
+  font-family: "Amiri", serif;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+#scroller{
+  position: fixed;
+  top: 0;
+  right: 5px;
+  width: 5px;
+  height: 0;
+  background-color: #0077ff;
+  z-index: 99;
+}
+.container {
+  padding: 0 15px;
+  margin: 0 auto;
+}
+/* Tablets */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+/* End Global styling */
+
+/* start .header */
+.header{
+  height: 55px;
+}
+.header .container{
+  background-color: gold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  height: 100%;
+  position: relative;
+}
+.header .container h1 a{
+  font-size: 3rem;
+  font-weight: bold;
+  color: teal;
+  transform: color 1.5s;
+}
+.header .container h1 a:hover{
+  color: rgb(28, 201, 143);
+}
+
+/* start icon */
+.header .container nav .icon{
+  width: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+
+}
+.header .container nav .icon span{
+  display: inline-block;
+  background-color: #333;
+  /* margin-bottom: 5px; */
+  width: 100%;
+  height: 4px;
+  direction: ltr;
+}
+.header .container nav .icon span:nth-child(2){
+  width: 50%;
+  margin: 5px 0;
+  transition: width 1s;
+}
+.header .container nav .icon .two:nth-child(2){
+  width: 100%;
+}
+.header .container nav .icon span:last-child{
+  height: 3px;
+}
+.header .container nav .links{
+  position: absolute;
+  direction: rtl;
+  background-color: #eee;
+  top: 70px;
+  right: 30px;
+  width: 150px;
+  padding: 15px 0 8px;
+  border-radius: 12px 0 12px 12px;
+  display: none;
+  flex-direction: column;
+  z-index: 10;
+  gap: 20px;
+  transition: 1s;
+}
+.header .container nav  .active{
+  display: flex;
+}
+.header .container nav .links li{
+  color: #333;
+  border-bottom: 2px solid #ccc;
+  padding:0 15px 8px 0 ;
+}
+.header .container nav .links .target{
+  border-bottom: 4px solid gold;
+}
+.header .container nav .links li a{
+  display: inline-block;
+  font-size: 1.7rem;
+  font-style: italic;
+  color: inherit;
+  font-weight: bold;
+  width: 100%;
+  transition: 1s;
+}
+.header .container nav .links li a:hover{
+  padding: 0 15px 5px 0;
+  color: coral;
+}
+.header .container nav .links::before{
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: -20px;
+  border: 10px solid;
+  border-color: transparent transparent #ccc transparent;
+}
+
+.overlay.active{
+  width: 98vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.71);
+  position: absolute;
+  top: 60px;
+  z-index: 5;
+}
+
+/* end .header */
+
+/* staylin card */
+ .container .card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bgBox,#f5f5f5);
+  border: 2px solid rgba(25, 25, 25, 0.3);
+  box-shadow: 5px 9px 9px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  width: 90%;
+  max-width: 750px;
+  font-size: 2.4rem;
+  padding: 20px 0;
+  margin: 2em auto 0;
+  animation: taptap var(--transition) 0.6s linear;
+}
+/* staylin card */
+
+/* style buttons */
+.btn{
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--textWhite);
+  background-color: transparent;
+  border: 2px solid #4CAF50;
+  border-radius: 18px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+/* style buttons */
+
+.border{
+  border: 2px solid #4CAF50;
+  border-radius: 12px;
+  padding: 10px;
+}

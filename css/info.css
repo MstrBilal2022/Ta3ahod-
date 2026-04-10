@@ -1,0 +1,51 @@
+
+.container main{
+  background-color: var(--bgBox);
+  width: 95%;
+  margin: 30px auto;
+  padding-bottom: 15px;
+  text-align: center;
+  box-shadow: 3px 3px 22px var(--accentColor) ,-3px -3px 22px var(--accentColor);
+  border-radius: 15px 
+}
+main h1{
+  font-size: 3.5rem;
+  color: orangered
+}
+main .box .content .hed {
+  display: flex;
+justify-content: space-evenly ;
+}
+main .box .content .hed button{
+  width: 30px;
+  height: 30px;
+  font-size: 2rem ;
+  color: #3b83f6;
+  border: none;
+  border-radius: 50%;
+  margin-top: 8px ;
+  cursor: pointer;
+}
+main .box .content .hed h2{
+  color: #3b83f6;
+  font-weight: bolder;
+  font-size: 2.5rem 
+  
+}
+main .box .content{
+  margin: 7px ;
+  background-color: #ccc ;
+  border-radius: 15px ;
+  
+}
+main .box .content p {
+  display: none;
+  font-weight: bolder;
+  font-size: 1.6rem ;
+  color: darkcyan;
+  font-style: italic;
+  padding-bottom: 5px;
+}
+main .box .content .activ{
+  display: block;
+}

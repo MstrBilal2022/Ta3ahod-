@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="css/fremwork.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="css/test.css" type="text/css" media="all" />
+  <title>إختبار</title>
+</head>
+
+<body>
+   <header class="header">
+        <div class="container">
+
+            <h1><a href="index.html">الرئيسية</a></h1>
+            <nav>
+                <div class="icon" id="icon">
+                    <span></span>
+                <span ></span>
+                <span></span>
+            </div>
+            <ul class="links" id="menu">
+                <li class="target"><a href="#">قرآن مع التفسير</a></li>
+                <li><a href="#">متشابهات</a></li>
+                <li><a href="#">اختبر حفظك</a></li>
+                <li><a href="#">نصائح</a></li>
+                <li><a href="#">فضل القرآن</a></li>
+                <li><a href="#">ارشادات الإستعمال</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+    </header>
+    <label class="mode" for="mode" style="display: none;">مضلم
+        <input type="checkbox" id="mode">
+    </label>
+    <div id="overlay" class="overlay"></div> 
+ 
+ <div class="test-container">
+  <div class="part-selection">
+    <h2>اختر الأجزاء التي تحفظها</h2>
+    
+    <div class="juz-buttons">
+      <!-- سيتم توليد أزرار الأحزاب ديناميكيًا -->
+    </div>
+  </div>
+
+  <div class="test-cards">
+    <div class="test-card" data-questions="50">
+      <h3>اختبار مكثف</h3>
+      <p>50 سؤال</p>
+      <button class="start-btn">ابدأ الاختبار</button>
+    </div>
+    
+    <div class="test-card" data-questions="25">
+      <h3>اختبار متوسط</h3>
+      <p>25 سؤال</p>
+      <button class="start-btn">ابدأ الاختبار</button>
+    </div>
+    
+    <div class="test-card" data-questions="15">
+      <h3>اختبار خفيف</h3>
+      <p>15 سؤال</p>
+      <button class="start-btn">ابدأ الاختبار</button>
+    </div>
+    
+    <div class="test-card flexible-test">
+      <h3>اختبار مرن</h3>
+      <div class="flexible-controls">
+        <input type="number" min="1" max="100" value="30" class="question-count">
+        <span>سؤال</span>
+        <button class="start-btn">ابدأ الاختبار</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="test-screen ">
+    <div class="question-container ">
+      <div class="progress">السؤال 1 من 50</div>
+      <div class="question-type"></div>
+      <div class="current-verse"></div>
+      <div class="options">
+        <!-- سيتم توليد الخيارات ديناميكيًا -->
+      </div>
+    </div>
+    <div class="result-screen ">
+      <h2>نتيجة الإختبار السابق</h2>
+      <div class="score">النسبة: 80%</div>
+      <div class="correct">الإجابات الصحيحة: 40</div>
+      <div class="wrong">الإجابات الخاطئة: 10</div>
+      <button class="restart-btn">إعادة الاختبار</button>
+    </div>
+  </div>
+</div>
+ <script src="js/global.js" type="module"></script>
+ <script src="js/test.js" defer></script>
+</body>
+
+</html>
