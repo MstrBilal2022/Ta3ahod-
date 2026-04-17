@@ -2,7 +2,7 @@
   "name": "تطبيق تعاهد للقرآن الكريم",
   "short_name": "تعاهد",
   "description": "تطبيق لقراءة وتفسير القرآن الكريم يعمل بدون إنترنت",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4CAF50",
