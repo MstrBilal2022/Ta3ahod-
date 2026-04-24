@@ -175,6 +175,9 @@ nextBtn.addEventListener("click", () => {
     i += 1;
     window.localStorage.setItem("sura_no", i);
     quran(i);
+    setTimeout(()=>{
+      document.getElementById("sora").scrollIntoView({ behavior: "smooth" });
+    },1000)
   }
 });
 
