@@ -17,18 +17,22 @@ section li:nth-child(5) {
   margin: 0 auto;
   padding: 20px;
 }
+.test-container .part-selection>h2{
+  color: var(--textWhite);
+  font-size: 2rem;
+}
 
 
 .juz-buttons {
   display: flex;
   flex-wrap: wrap;
-  padding-right: 5px;
   gap: 10px ;
   text-align: center;
-  margin-top: 20px;
-  background-color: #eee ;
+  margin: 20px 0;
+  background-color: transparent ;
   border-radius:15px ;
-  padding-bottom: 15px;
+  border: 2px solid var(--accentColor);
+  padding:20px;
   overflow-x: hidden;
 }
 
@@ -40,11 +44,11 @@ section li:nth-child(5) {
   padding: 5px ;
   justify-content: center;
   border-radius: 15px;
-  background: #F5F5F5;
+  background: var(--bgBox , #f5f5f5);
   backdrop-filter: blur(10px);
-  color: #1B5E20;
+  color: var(--textColor);
   border: 2px solid rgba(25, 25, 25, 0.3);
-  box-shadow: 5px 9px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 4px 3px teal;
   text-align: center;
   font-weight: bold;
   font-size: 20px;
@@ -95,21 +99,31 @@ section li:nth-child(5) {
 }
 
 .test-card {
-  background-color: #fff;
+  background-color: var(--bgBox );
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px var(--shadow, grey);
   text-align: center;
 }
 
 .test-card h3 {
-  color: #2c3e50;
+  color:var(--textWhite ,#2c3e50);
   margin-top: 0;
+  font-size: 2rem;
+  font-weight:bolder;
 }
 
-.test-card p {
+.test-card p,
+.flexible-test span{
   color: #7f8c8d;
-  font-size: 18px;
+  font-size: 1.8rem;
+  font-weight:bolder;
+}
+.test-card input{
+  background-color: #eee;
+  color:var(--bgBox);
+  font-size: 1.8rem;
+  font-weight:bolder;
 }
 
 .start-btn {
@@ -137,16 +151,17 @@ section li:nth-child(5) {
 }
 
 .test-screen {
-  background-color: #f9f9f9;
+  background-color: var(--bgBox , #f9f9f9);
   border-radius: 10px;
   padding: 30px;
+  color: var(--textWhite);
 }
 
 .current-verse {
   font-size: 24px;
   margin: 30px 0;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: var(--bgBox, #fff);
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -159,9 +174,11 @@ section li:nth-child(5) {
 }
 
 .option {
-  background-color: #fff;
+  background-color: var(--bgBox);
+  color: var(--textWhite);
   padding: 15px;
   border-radius: 5px;
+  font-size: 1.4rem;
   cursor: pointer;
   transition: background-color 0.3s;
   border: 1px solid #ddd;
@@ -169,6 +186,7 @@ section li:nth-child(5) {
 
 .option:hover {
   background-color: #f0f0f0;
+  color: initial;
 }
 
 .option.correct {

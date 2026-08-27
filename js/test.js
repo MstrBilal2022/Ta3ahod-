@@ -1,16 +1,9 @@
-let link = document.querySelector('.links');
-let ul = document.getElementById('chowMenu');
-let sacendSpan = document.getElementById('span');
+//global stayling
+import {header} from './global.js'
+header();
 
-link.addEventListener('click', () => {
-  if (window.getComputedStyle(ul).display === 'block') {
-    ul.style.display = 'none';
-    sacendSpan.style.width = '100%';
-  } else {
-    ul.style.display = 'block';
-    sacendSpan.style.width = '60%';
-  }
-});
+
+
 
 // End Header 
 
@@ -150,7 +143,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           questions.push({
             type: isPreviousQuestion ? 'previous' : 'next',
             verse: verse,
-            correctAnswer: isPreviousQuestion ? verse.previous_aya : verse.next_aya,
+            correctAnswer: isPreviousQuestion ? verse.previous_aya.slice(0,-2) : verse.next_aya.slice(0,-2),
             ayaRef: `سورة ${verse.sura_name_ar} الآية ${verse.aya_no}`,
             userAnswer: null // لإضافة إجابة المستخدم
           });
@@ -236,7 +229,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // المؤقت الزمني
     function startTimer() {
-      let timeLeft = 30;
+      let timeLeft = 40;
       const timerElement = document.createElement('div');
       timerElement.className = 'timer';
       document.querySelector('.question-container').appendChild(timerElement);

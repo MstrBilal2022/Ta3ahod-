@@ -169,12 +169,15 @@ preBtn.addEventListener("click", () => {
   }
 });
 
-nextBtn.addEventListener("click", () => {
+nextBtn.addEventListener("click", (e) => {
   let i = Number(window.localStorage.getItem("sura_no"));
   if (i < 114) {
     i += 1;
     window.localStorage.setItem("sura_no", i);
     quran(i);
+    setTimeout(()=>{
+      document.getElementById("sora").scrollIntoView({ behavior: "smooth" });
+    },1000)
   }
 });
 
