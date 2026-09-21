@@ -11,6 +11,8 @@ let globalTafsirData = []; // سيحفظ بيانات التفسير
 let soraHafsSaved = []; // سيحفظ آيات السورة الحالية
 let quranSearchData = null; // مخصص لعملية البحث السريع
 
+let typeOfRiway = 'warsh' //متغير جديد يحمل قيمة الرواية المختارة hafs أو warsh 
+
 // دالة جديدة لجلب كل البيانات دفعة واحدة عند تحميل الصفحة
 async function initializeApp() {
   try {
@@ -37,6 +39,7 @@ async function initializeApp() {
     console.error("حدث خطأ في تحميل البيانات الأساسية:", error);
   }
 }
+
 
 // تشغيل التطبيق بمجرد أن يقرأ المتصفح الكود
 initializeApp();
@@ -92,32 +95,32 @@ function surahNames() { // أزلنا الـ async لأن البيانات جا�
   });
   // chow menu of sora names or hidden 
   let btn = document.querySelector(".menuSora .btn");
-let box = document.querySelector(".menuSora .box");
-
-let isMenuHidden = localStorage.getItem("isSoraListHidden") === "true";
-//استخراج القيمة الأخيرة من التخزين المحلي
-if (isMenuHidden) {
-  box.classList.add("hidden");
-  btn.textContent = "اظهار أسماء السور";
-} else {
-  box.classList.remove("hidden");
-  btn.textContent = "اخفاء أسماء السور";
-}
-
-btn.addEventListener("click", (e) => {
-  box.classList.toggle("hidden");
+  let box = document.querySelector(".menuSora .box");
   
-  // نتحقق من وجود كلاس hidden  على الزر
-  let currentlyHidden = box.classList.contains("hidden");
+  let isMenuHidden = localStorage.getItem("isSoraListHidden") === "true";
+  //استخراج القيمة الأخيرة من التخزين المحلي
+  if (isMenuHidden) {
+    box.classList.add("hidden");
+    btn.textContent = "اظهار أسماء السور";
+  } else {
+    box.classList.remove("hidden");
+    btn.textContent = "اخفاء أسماء السور";
+  }
   
-  // تحديث نص الزر بناءً على الحالة الجديدة
-  e.target.textContent = currentlyHidden ? "اظهار أسماء السور" : "اخفاء أسماء السور";
+  btn.addEventListener("click", (e) => {
+    box.classList.toggle("hidden");
+    
+    // نتحقق من وجود كلاس hidden  على الزر
+    let currentlyHidden = box.classList.contains("hidden");
+    
+    // تحديث نص الزر بناءً على الحالة الجديدة
+    e.target.textContent = currentlyHidden ? "اظهار أسماء السور" : "اخفاء أسماء السور";
+    
+    //تخزين القيمة في localStorage  أو حذفها
+    currentlyHidden ? localStorage.setItem("isSoraListHidden", currentlyHidden) : localStorage.removeItem("isSoraListHidden");
+  });
   
-  //تخزين القيمة في localStorage  أو حذفها
-  currentlyHidden ? localStorage.setItem("isSoraListHidden", currentlyHidden) : localStorage.removeItem("isSoraListHidden");
-});
-
-
+  
   ul.innerHTML = "";
   let names = new Set();
   
@@ -147,6 +150,7 @@ btn.addEventListener("click", (e) => {
 document.querySelector("select").addEventListener("change", async (e) => {
   // عند تغيير الرواية، يجب جلب الملف الجديد فقط
   let riwayat = e.target.value;
+  typeOfRiway = e.target.value;
   let response = await fetch(`./data/${riwayat}.json`);
   globalQuranData = await response.json();
   quran(window.localStorage.getItem("sura_no") || 1);
@@ -175,9 +179,9 @@ nextBtn.addEventListener("click", (e) => {
     i += 1;
     window.localStorage.setItem("sura_no", i);
     quran(i);
-    setTimeout(()=>{
+    setTimeout(() => {
       document.getElementById("sora").scrollIntoView({ behavior: "smooth" });
-    },1000)
+    }, 1000)
   }
 });
 
@@ -337,59 +341,59 @@ function searchAya(searchTerm) {
     span.textContent = ` {${result.aya_no}} `;
     
     
-     let clickTimer = null; //لتخزين مؤقت النقر 
-   
+    let clickTimer = null; //لتخزين مؤقت النقر 
+    
     //حدث فتح سورة الآية والنزول إليها
-    li.addEventListener('click', async () => { 
+    li.addEventListener('click', async () => {
       clearTimeout(clickTimer);
       clickTimer = setTimeout(async () => {
-      let selectRiwaya = document.querySelector('.btn');
-      
-      // 1. تغيير الرواية لحفص (إذا لم تكن حفص بالفعل) وتحديث البيانات
-      if (selectRiwaya.value !== 'hafs') {
-        selectRiwaya.value = 'hafs';
-        try {
-          // ننتظر جلب بيانات حفص قبل إكمال أي شيء
-          let response = await fetch(`./data/hafs.json`);
-          globalQuranData = await response.json();
-        } catch (error) {
-          console.error("حدث خطأ أثناء جلب رواية حفص:", error);
-        }
-      }
-      
-      // تحديث رقم السورة في الذاكرة المحلية لضمان استقرار التطبيق
-      window.localStorage.setItem("sura_no", result.sura_no);
-      
-      // 2. فتح سورة الآية التي تم الضغط عليها
-      quran(result.sura_no);
-      
-      // 3. نبحث عن الآية ونقوم بالنزول السلس
-      // 💡 استخدمنا setTimeout بسيط جداً (50 ملي ثانية) لإعطاء المتصفح 
-      // وقتاً لحساب أبعاد العناصر الجديدة في الشاشة قبل النزول إليها
-      setTimeout(() => {
-        let currentAya = document.querySelector(`span.ayaText[data-aya-num="${result.aya_no}"]`);
+        let selectRiwaya = document.querySelector('.btn');
         
-        if (currentAya) {
-          // النزول السلس لتصبح الآية في منتصف الشاشة
-          currentAya.scrollIntoView({ behavior: "smooth", block: "center" });
-          
-          // تلوين خلفية الآية لثانيتين لتمييزها للمستخدم
-          let originalColor = currentAya.style.backgroundColor || "";
-          let originalTextColor = currentAya.style.color || "";
-          
-          currentAya.style.backgroundColor = "#e6f7ff"; // لون التمييز
-          currentAya.style.color = "teal"; // ضمان وضوح النص
-          
-          setTimeout(() => {
-            currentAya.style.backgroundColor = originalColor; // إعادة اللون الطبيعي
-            currentAya.style.color = originalTextColor; // إعادة لون النص الطبيعي
-          }, 4000);
+        // 1. تغيير الرواية لحفص (إذا لم تكن حفص بالفعل) وتحديث البيانات
+        if (selectRiwaya.value !== 'hafs') {
+          selectRiwaya.value = 'hafs';
+          try {
+            // ننتظر جلب بيانات حفص قبل إكمال أي شيء
+            let response = await fetch(`./data/hafs.json`);
+            globalQuranData = await response.json();
+          } catch (error) {
+            console.error("حدث خطأ أثناء جلب رواية حفص:", error);
+          }
         }
-      }, 50);
-      },250);
+        
+        // تحديث رقم السورة في الذاكرة المحلية لضمان استقرار التطبيق
+        window.localStorage.setItem("sura_no", result.sura_no);
+        
+        // 2. فتح سورة الآية التي تم الضغط عليها
+        quran(result.sura_no);
+        
+        // 3. نبحث عن الآية ونقوم بالنزول السلس
+        // 💡 استخدمنا setTimeout بسيط جداً (50 ملي ثانية) لإعطاء المتصفح 
+        // وقتاً لحساب أبعاد العناصر الجديدة في الشاشة قبل النزول إليها
+        setTimeout(() => {
+          let currentAya = document.querySelector(`span.ayaText[data-aya-num="${result.aya_no}"]`);
+          
+          if (currentAya) {
+            // النزول السلس لتصبح الآية في منتصف الشاشة
+            currentAya.scrollIntoView({ behavior: "smooth", block: "center" });
+            
+            // تلوين خلفية الآية لثانيتين لتمييزها للمستخدم
+            let originalColor = currentAya.style.backgroundColor || "";
+            let originalTextColor = currentAya.style.color || "";
+            
+            currentAya.style.backgroundColor = "#e6f7ff"; // لون التمييز
+            currentAya.style.color = "teal"; // ضمان وضوح النص
+            
+            setTimeout(() => {
+              currentAya.style.backgroundColor = originalColor; // إعادة اللون الطبيعي
+              currentAya.style.color = originalTextColor; // إعادة لون النص الطبيعي
+            }, 4000);
+          }
+        }, 50);
+      }, 250);
     });
     
-     
+    
     //حدث جلب التفسير
     li.addEventListener('dblclick', () => {
       tafsir(li.dataset.soraNum, li.dataset.ayaNum);
@@ -464,6 +468,9 @@ function tafsir(soraNum, ayaNum) {
   if (soraNum === 1 && ayaNum === 1) {
     start = 0;
     end = 1;
+  } else if (typeOfRiway == 'hafs') {
+    start = currentAya - 1;
+    end = currentAya;
   } else {
     //جلب تفسير السورة كاملة إذا كانت قصيرة (أقل من 5 آيات)
     if (totalAyahs <= 5) {
@@ -485,6 +492,8 @@ function tafsir(soraNum, ayaNum) {
   for (let i = start; i < end; i++) {
     let li = document.createElement("li");
     let aya = document.createElement("h4");
+    const titleOfTafsir = document.createElement('h1')
+    titleOfTafsir.textContent = `تفسير الآية ${i+1}=>${globalQuranData.sura_name_ar}`
     
     aya.textContent = soraHafsSaved[i];
     li.textContent = globalTafsirData.tafsir[Number(soraNum) - 1][i];
@@ -494,8 +503,11 @@ function tafsir(soraNum, ayaNum) {
     }
     
     li.prepend(aya);
+    fragment.append(titleOfTafsir);
     fragment.append(li);
   }
+  //console.log(globalQuranData[soraNum].sura_name_ar)
+  //console.log(soraNum)
   
   ulTafsir.append(fragment);
 }
