@@ -464,6 +464,10 @@ function tafsir(soraNum, ayaNum) {
   let currentAya = Number(ayaNum);
   let start, end;
   let totalAyahs = soraHafsSaved.length;
+  //إحضار اسم السورة 
+  let currentSora = globalQuranData.find(item => item.sura_no == soraNum);
+let suraName = currentSora ? currentSora.sura_name_ar : "";
+
   //جلب تفسير البسملة فقط
   if (soraNum === 1 && ayaNum === 1) {
     start = 0;
@@ -492,9 +496,9 @@ function tafsir(soraNum, ayaNum) {
   for (let i = start; i < end; i++) {
     let li = document.createElement("li");
     let aya = document.createElement("h4");
-    const titleOfTafsir = document.createElement('h1')
-    titleOfTafsir.textContent = `تفسير الآية ${i+1}=>${globalQuranData.sura_name_ar}`
-    
+    const titleOfTafsir = document.createElement('h3')
+    titleOfTafsir.textContent = `تفسير الآية ${i + 1} - سورة ${suraName}`;
+
     aya.textContent = soraHafsSaved[i];
     li.textContent = globalTafsirData.tafsir[Number(soraNum) - 1][i];
     
@@ -506,8 +510,6 @@ function tafsir(soraNum, ayaNum) {
     fragment.append(titleOfTafsir);
     fragment.append(li);
   }
-  //console.log(globalQuranData[soraNum].sura_name_ar)
-  //console.log(soraNum)
   
   ulTafsir.append(fragment);
 }
