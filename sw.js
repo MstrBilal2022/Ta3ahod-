@@ -1,4 +1,4 @@
-const CACHE_NAME = "taahod-app-v2";
+const CACHE_NAME = "taahod-app-v3";
 const assetsToCache = [
   "./",
   "./index.html",
@@ -32,13 +32,12 @@ const assetsToCache = [
   "./data/telegram.png"
 ];
 
-// حدث التثبيت: حفظ الملفات مع التسامح مع الأخطاء
+// 1. التثبيت والتفعيل الفوري
 self.addEventListener("install", (e) => {
-  self.skipWaiting(); // التفعيل الفوري
+  self.skipWaiting(); // تجاوز الانتظار والتفعيل فوراً
   e.waitUntil(
-    caches.open(CACHE_NAME).then(async (cache) => {
+    caches.open(CACHE_NAME).then((cache) => {
       console.log("جاري تخزين ملفات تعاهد للعمل أوفلاين...");
-      // إدخال كل ملف على حدة لضمان عدم توقف التثبيت في حال فقدان ملف واحد
       return Promise.allSettled(
         assetsToCache.map((url) =>
           cache.add(url).catch((err) => console.warn(`تعذر تخزين الملف: ${url}`, err))
@@ -48,34 +47,47 @@ self.addEventListener("install", (e) => {
   );
 });
 
-// حدث التفعيل: مسح النسخ القديمة واستلام التحكم فوراً
+// 2. التفعيل: تنظيف الذاكرة القديمة واستلام التحكم فوراً
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
+            console.log(`حذف الذاكرة القديمة: ${cache}`);
             return caches.delete(cache);
           }
         })
       );
-    }).then(() => self.clients.claim())
+    }).then(() => self.clients.claim()) // استلام التحكم بجميع الصفحات المفتوحة فوراً
   );
 });
 
-// حدث الجلب: تقديم الملفات من الذاكرة المحلية مع دعم التنقل أوفلاين
+// 3. الجلب: استراتيجية Stale-While-Revalidate مع دعم الأوفلاين
 self.addEventListener("fetch", (e) => {
+  if (e.request.method !== "GET") return;
+
   e.respondWith(
-    caches.match(e.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(e.request).catch(() => {
-        // إذا كان طلب فتح صفحة وكان الهاتف بدون إنترنت، توجيهه لـ index.html
-        if (e.request.mode === 'navigate') {
-          return caches.match('./index.html');
-        }
-      });
+    caches.open(CACHE_NAME).then(async (cache) => {
+      const cachedResponse = await cache.match(e.request);
+
+      // طلب النسخة الجديدة من الشبكة في الخلفية لتحديث الذاكرة
+      const fetchPromise = fetch(e.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200 && networkResponse.type === "basic") {
+            cache.put(e.request, networkResponse.clone());
+          }
+          return networkResponse;
+        })
+        .catch(() => {
+          // عند عدم توفر إنترنت وفتح صفحة جديدة، التوجيه إلى index.html
+          if (e.request.mode === "navigate" && !cachedResponse) {
+            return caches.match("./index.html");
+          }
+        });
+
+      // إرجاع النسخة المخزنة فوراً للسرعة، أو الانتظار للشبكة إذا كان الملف جديداً
+      return cachedResponse || fetchPromise;
     })
   );
 });

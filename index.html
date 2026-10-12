@@ -122,11 +122,22 @@
 
 <script defer>
   // نتحقق أولاً هل متصفح المستخدم يدعم هذه التقنية
+// تسجيل الـ Service Worker والاستماع لحدث التحديث
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js")
-      .then((reg) => console.log("تم تسجيل Service Worker بنجاح! تطبيقك الآن جاهز للعمل بدون إنترنت 🚀", reg.scope))
-      .catch((err) => console.log("حدث خطأ في تسجيل Service Worker:", err));
+    navigator.serviceWorker.register("./sw.js").then((reg) => {
+      // إجبار المتصفح على البحث عن تحديث عند فتح التطبيق
+      reg.update();
+    });
+
+    // إعادة تحميل الصفحة تلقائياً بمجرد استلام التحكم من الـ Service Worker الجديد
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (!refreshing) {
+        refreshing = true;
+        window.location.reload(); // تحديث الشاشة تلقائياً لعرض الإصدار الجديد
+      }
+    });
   });
 }
 
